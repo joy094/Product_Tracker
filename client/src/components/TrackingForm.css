@@ -1,0 +1,290 @@
+/* TrackingForm.css */
+/* 
+.tracking-container {
+  max-width: 600px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tracking-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tracking-input {
+  flex-grow: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.tracking-input:focus {
+  border-color: #3b82f6;
+}
+
+.tracking-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} */
+
+.tracking-button:hover {
+  background-color: #2563eb;
+}
+
+.tracking-error {
+  margin-top: 0.5rem;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.tracking-result {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #f9fafb;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+}
+
+.stages-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.stage-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e0e7ff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  color: #4b5563;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.stage-card.done {
+  background: #34d399;
+  color: white;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
+  transform: scale(1.05);
+}
+
+.stage-card.current {
+  border: 2px solid #2563eb;
+}
+
+.stage-emoji {
+  font-size: 1.5rem;
+}
+
+.stage-checkmark {
+  margin-left: auto;
+  font-size: 1.2rem;
+  color: #d1fae5;
+}
+
+.tracking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  font-family: "Tiro Bangla", serif;
+}
+
+.tracking-form {
+  background: #e0e5ec;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 6px 6px 10px #a3b1c6, -6px -6px 10px #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 400px;
+  transition: box-shadow 0.3s ease;
+}
+
+.tracking-form:hover {
+  box-shadow: 8px 8px 15px #8a9ab8, -8px -8px 15px #ffffff;
+}
+
+.tracking-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 12px;
+  background: #e0e5ec;
+  box-shadow: inset 4px 4px 8px #bec8d2, inset -4px -4px 8px #ffffff;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.tracking-input:focus {
+  box-shadow: inset 2px 2px 6px #9aa8c4, inset -2px -2px 6px #ffffff;
+}
+
+.tracking-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+}
+
+.tracking-button:hover {
+  background-color: #0d6efd;
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 15px #6a7ac4, -8px -8px 15px #acc4ff;
+}
+
+.tracking-error {
+  color: #e63946;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.tracking-result {
+  margin-top: 30px;
+  background: #e0e5ec;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  max-width: 400px;
+  width: 90%;
+  color: #333;
+}
+
+.tracking-result h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #222;
+  user-select: none;
+}
+
+.tracking-result p {
+  font-size: 16px;
+  margin: 6px 0;
+  user-select: none;
+}
+/* -------------------------------------------------------------------------- */
+/* STAGES TIMELINE STYLES (Focusing on the Stages part) */
+/* -------------------------------------------------------------------------- */
+
+/* Desktop/Tablet - Stages Container (Horizontal flow) */
+.stages-container {
+    display: flex; /* Horizontal flow for larger screens */
+    flex-wrap: wrap; /* Allow wrapping if many items */
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    /* Ensure no unwanted scrollbar appears */
+    overflow-x: hidden; 
+}
+
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE STYLES (Mobile View: Max 550px) */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 550px) {
+
+    /* 1. Form and Container Adjustments */
+    .tracking-container {
+        padding: 20px 10px;
+        margin-top: 20px;
+    }
+    
+    .tracking-form {
+        /* Form already stacks items vertically, just adjust max-width */
+        max-width: 100%;
+        width: auto;
+        padding: 20px;
+        box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+    }
+
+    .tracking-result {
+        max-width: 100%;
+        width: auto;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+    }
+
+    /* 2. Stages Timeline - Vertical Stack */
+    .stages-container {
+        /* Mobile: Change to vertical stacking for better readability */
+        flex-direction: column; 
+        gap: 10px;
+        align-items: flex-start; /* Align all stages to the left */
+        border-left: 2px solid #ccc; /* Simple vertical timeline line */
+        padding-left: 20px; /* Space for the cards to move over */
+        margin-top: 15px;
+    }
+
+    .stage-card {
+        /* Ensure the card takes full available horizontal space in the container */
+        width: 100%; 
+        padding: 0.75rem 1rem;
+        margin-bottom: 5px; /* Add slight spacing between stacked cards */
+        box-shadow: 2px 2px 5px rgb(0 0 0 / 0.1);
+        position: relative;
+    }
+    
+    /* Small indicator circle/dot for the vertical timeline */
+    .stage-card::before {
+        content: '';
+        position: absolute;
+        left: -27px; /* Position next to the vertical line */
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ccc;
+        z-index: 10;
+        box-shadow: 0 0 0 3px #e0e5ec; /* Background glow/border */
+        transition: background-color 0.3s;
+    }
+    
+    /* Style for Done stages in the vertical timeline */
+    .stage-card.done::before {
+        background-color: #34d399; /* Green dot for completed stages */
+    }
+    
+    /* Remove horizontal scale on mobile hover/done to avoid layout shifting */
+    .stage-card.done {
+        transform: none; /* Disable transform scale on mobile */
+        box-shadow: 0 2px 5px rgb(0 0 0 / 0.2);
+    }
+    
+    .stage-emoji {
+        /* Make emoji slightly smaller on mobile */
+        font-size: 1.2rem; 
+    }
+    
+    .stage-checkmark {
+        /* Adjust checkmark size and color */
+        font-size: 1rem;
+        color: white;
+    }
+}

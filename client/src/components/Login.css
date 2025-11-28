@@ -1,0 +1,129 @@
+/* src/components/Login.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15),
+    -10px -10px 20px rgba(255, 255, 255, 0.7);
+  min-width: 300px;
+  text-align: center;
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.login-card:hover {
+  transform: rotateY(5deg) scale(1.02);
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.2),
+    -15px -15px 30px rgba(255, 255, 255, 0.8);
+}
+
+.login-title {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-input {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.login-input:focus {
+  border-color: #2575fc;
+  box-shadow: inset 3px 3px 6px rgba(37, 117, 252, 0.2),
+    inset -3px -3px 6px rgba(37, 117, 252, 0.2);
+}
+
+.login-button {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(145deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+    -5px -5px 10px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s;
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3),
+    -8px -8px 15px rgba(255, 255, 255, 0.5);
+}
+
+.login-error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE STYLES FOR LOGIN CARD */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  /* 1. Login Container (Background/Full Screen) */
+  .login-container {
+    /* ছোট স্ক্রিনে 100vh এর পরিবর্তে min-height ব্যবহার করা যেতে পারে */
+    min-height: 100vh;
+    /* vertical alignment এর জন্য padding যোগ করা যেতে পারে */
+    padding: 20px;
+  }
+
+  /* 2. Login Card Adjustment */
+  .login-card {
+    /* ছোট স্ক্রিনে কার্ডের প্রস্থকে স্ক্রিনের প্রায় পূর্ণ প্রস্থে সেট করা */
+    width: 100%;
+    /* ছোট স্ক্রিনে max-width কমিয়ে আনা, যাতে বড় কার্ড তৈরি না হয় */
+    max-width: 350px;
+
+    /* ছোট স্ক্রিনে প্যাডিং কিছুটা কমানো */
+    padding: 30px 20px;
+
+    /* মোবাইলে 100% ফিট করার জন্য মার্জিন/জায়গা কমানো */
+    margin: 20px;
+
+    /* মোবাইলে ট্রানজিশন ইফেক্টগুলো কিছুটা কমিয়ে আনা যেতে পারে */
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  /* 3. Hover Effect Adjustment (Touchscreens) */
+  .login-card:hover {
+    /* মোবাইলে টাচ-স্ক্রিন ডিভাইসগুলি হোভার সমর্থন করে না, তবুও যদি থাকে, তবে স্কেল কম রাখা */
+    transform: scale(1.01);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15),
+      -10px -10px 20px rgba(255, 255, 255, 0.7);
+  }
+
+  /* 4. Input and Button Adjustments */
+  .login-input,
+  .login-button {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+}

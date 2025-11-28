@@ -1,0 +1,83 @@
+# .gitignore for greenCargo
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio / .NET
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+bin/
+obj/
+Debug/
+Release/
+TestResults/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+env/
+.env
+pip-wheel-metadata/
+
+# Java / Gradle / Maven
+target/
+build/
+*.class
+*.jar
+*.war
+
+# Go
+bin/
+pkg/
+
+# Logs, coverage, reports
+*.log
+coverage/
+*.lcov
+coverage-html/
+
+# Binaries / compiled artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+
+# Archives / packages
+*.zip
+*.tar.gz
+*.7z
+*.rar
+
+# Secrets / local config
+*.env
+*.env.local
+secrets.*
+config/local.*
+
+# Misc
+.vagrant/
+.idea/

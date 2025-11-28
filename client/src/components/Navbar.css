@@ -1,0 +1,140 @@
+.navbar {
+  background: linear-gradient(145deg, #e0e0e0, #ffffff);
+  box-shadow: 8px 8px 20px #bebebe, -8px -8px 20px #ffffff;
+  border-radius: 16px;
+  margin: 20px auto;
+  max-width: 90%;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e7d32;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+  margin-left: 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 900;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: #a5d6a7;
+  color: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.logout-button {
+  background: linear-gradient(145deg, #ff6f61, #ff3d00);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* --- existing code for .navbar, .logo, .nav-links a, etc. --- */
+
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE STYLES                              */
+/* -------------------------------------------------------------------------- */
+
+/* 1. Hamburger Menu Icon Style */
+.menu-icon {
+  display: none; /* By default hidden on desktop */
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1000; /* Ensure icon is above the menu */
+}
+
+.menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: 0.4s;
+  border-radius: 2px;
+}
+
+
+/* 2. Media Query for Mobile/Tablet Screens */
+@media (max-width: 768px) {
+  
+  /* Show the hamburger icon */
+  .menu-icon {
+    display: block;
+  }
+  
+  /* Styling for the Navigation Links container in Mobile View */
+  .nav-links {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full screen height */
+    background: #f0f0f0; /* Use a light background for visibility */
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%); /* Hide menu off-screen */
+    transition: transform 0.4s ease-in-out;
+    padding: 0;
+    margin: 0;
+    z-index: 998; /* Below the icon, above content */
+    box-shadow: none;
+  }
+
+  /* When the menu is open, slide it into view */
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  /* Style individual links for mobile (stacking them) */
+  .nav-links a, 
+  .nav-links .user-email, 
+  .nav-links .logout-button {
+    margin: 15px 0; /* Vertical spacing */
+    width: 80%; /* Full width links */
+    text-align: center;
+    display: block;
+  }
+  
+  /* Align logo and icon */
+  .navbar-content {
+    padding: 5px 0; /* Tighten up spacing */
+  }
+
+  /* Hamburger Icon Animation (when open) */
+  .menu-icon .bar:nth-child(2).open {
+    opacity: 0; /* Middle bar disappears */
+  }
+
+  .menu-icon .bar:nth-child(1).open {
+    transform: rotate(-45deg) translate(-7px, 6px);
+  }
+
+  .menu-icon .bar:nth-child(3).open {
+    transform: rotate(45deg) translate(-7px, -6px);
+  }
+}
