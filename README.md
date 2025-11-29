@@ -45,7 +45,7 @@ git clone https://github.com/joy094/Product_Tracker
 cd product-tracking
 
 # Backend সেটআপ
-cd Product_TRacker
+cd Product_Tracker
 npm install
 # .env ফাইলে যোগ করুন:
 # MONGO_URI=your_mongo_atlas_url
