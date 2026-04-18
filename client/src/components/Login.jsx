@@ -14,7 +14,7 @@ const Login = ({ setAuth }) => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        "/api/auth/login",
         { username, password },
         { headers: { "Content-Type": "application/json" } }
       );

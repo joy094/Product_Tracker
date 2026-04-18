@@ -19,9 +19,9 @@ function TrackingForm() {
 
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tracking/${trackingNumber.trim()}`);
+      const res = await fetch(`/api/tracking/${trackingNumber.trim()}`);
       if (!res.ok) {
-        setError("❌ এই ট্র্যাকিং নম্বরের কোনো তথ্য পাওয়া যায়নি।");
+        setError("❌ এই ট্র্যাকিং নম্বরের কোনো তথ্য পাওয়া যায়নি।");
         setLoading(false);
         return;
       }
