@@ -45,7 +45,7 @@ git clone https://github.com/joy094/Product_Tracker
 cd product-tracking
 
 # Backend সেটআপ
-cd Product_TRacker
+cd Product_Tracker
 npm install
 # .env ফাইলে যোগ করুন:
 # MONGO_URI=your_mongo_atlas_url
@@ -53,7 +53,7 @@ npm install
 npm run dev  # অথবা node server.js
 
 # Frontend (Vite) সেটআপ
-cd /client
+cd client
 npm install
 # .env.development এ যোগ করুন:
 # VITE_API_URL=http://localhost:5000
