@@ -17,6 +17,25 @@ const trackingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  totalCartoons: {
+    type: Number,
+    required: true,
+  },
+
+  weight: {
+    type: Number,
+    required: true,
+  },
+  recivedDate: {
+    type: Date,
+    required: true,
+  },
+cbm: {
+    type: Number,
+    required: true,
+  },
+
+
   transport: {
     type: String,
     enum: ["Air", "Sea"],

@@ -1,13 +1,39 @@
+/* Hind Siliguri Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-green: #2e7d32;
+  --bg-color: #f0f0f0;
+  --neu-shadow-dark: #bebebe;
+  --neu-shadow-light: #ffffff;
+  --danger-red: #ff3d00;
+  --nav-bg: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  /* মোবাইলে কন্টেন্ট যেন বটম ন্যাভের নিচে না ঢাকা পড়ে */
+  padding-bottom: 80px; 
+}
+
+/* ডেস্কটপ নেভিগেশন */
 .navbar {
   background: linear-gradient(145deg, #e0e0e0, #ffffff);
-  box-shadow: 8px 8px 20px #bebebe, -8px -8px 20px #ffffff;
+  box-shadow: 8px 8px 20px var(--neu-shadow-dark), -8px -8px 20px var(--neu-shadow-light);
   border-radius: 16px;
   margin: 20px auto;
-  max-width: 90%;
-  padding: 15px 30px;
+  max-width: 95%;
+  padding: 12px 25px;
   position: sticky;
-  top: 0;
-  z-index: 999;
+  top: 10px;
+  z-index: 1000;
   transition: all 0.3s ease-in-out;
 }
 
@@ -18,123 +44,122 @@
 }
 
 .logo {
-  font-family: "Segoe UI", sans-serif;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2e7d32;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-green);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
 .nav-links a {
-  margin-left: 20px;
+  margin-left: 15px;
   font-size: 1rem;
   text-decoration: none;
   color: #333;
-  font-weight: 900;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: background 0.3s, transform 0.2s;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: all 0.3s;
 }
 
 .nav-links a:hover {
-  background-color: #a5d6a7;
+  background: #a5d6a7;
   color: #1b5e20;
   transform: translateY(-2px);
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .logout-button {
-  background: linear-gradient(145deg, #ff6f61, #ff3d00);
+  background: linear-gradient(145deg, #ff6f61, var(--danger-red));
   color: white;
-  padding: 10px 20px;
+  padding: 8px 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
+  font-weight: 600;
+  margin-left: 15px;
+  box-shadow: 4px 4px 10px #d1d1d1;
 }
 
-/* --- existing code for .navbar, .logo, .nav-links a, etc. --- */
+/* মোবাইল ভিউর জন্য মডিফিকেশন */
+.menu-icon, .bottom-nav {
+  display: none;
+}
 
 /* -------------------------------------------------------------------------- */
-/* RESPONSIVE STYLES                              */
+/* RESPONSIVE STYLES (Mobile & Tablet)                                        */
 /* -------------------------------------------------------------------------- */
 
-/* 1. Hamburger Menu Icon Style */
-.menu-icon {
-  display: none; /* By default hidden on desktop */
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1000; /* Ensure icon is above the menu */
-}
-
-.menu-icon .bar {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 5px 0;
-  transition: 0.4s;
-  border-radius: 2px;
-}
-
-
-/* 2. Media Query for Mobile/Tablet Screens */
 @media (max-width: 768px) {
-  
-  /* Show the hamburger icon */
-  .menu-icon {
-    display: block;
-  }
-  
-  /* Styling for the Navigation Links container in Mobile View */
+  /* ডেস্কটপ কন্টেন্ট লুকানো */
   .nav-links {
-    position: absolute;
-    top: 0; 
+    display: none;
+  }
+
+  /* লোগো এবং উপরের নেভিগেশন বার কিছুটা ছোট করা */
+  .navbar {
+    margin: 10px auto;
+    padding: 10px 20px;
+    max-width: 92%;
+    border-radius: 12px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  /* বটম নেভিগেশন সক্রিয় করা */
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Full screen height */
-    background: #f0f0f0; /* Use a light background for visibility */
-    display: flex;
-    flex-direction: column; /* Stack links vertically */
-    justify-content: center;
+    height: 70px;
+    background: var(--nav-bg);
+    border-top: 1px solid #ddd;
+    justify-content: space-around;
     align-items: center;
-    transform: translateX(100%); /* Hide menu off-screen */
-    transition: transform 0.4s ease-in-out;
-    padding: 0;
-    margin: 0;
-    z-index: 998; /* Below the icon, above content */
-    box-shadow: none;
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 2000;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
   }
 
-  /* When the menu is open, slide it into view */
-  .nav-links.open {
-    transform: translateX(0);
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex: 1;
   }
 
-  /* Style individual links for mobile (stacking them) */
-  .nav-links a, 
-  .nav-links .user-email, 
-  .nav-links .logout-button {
-    margin: 15px 0; /* Vertical spacing */
-    width: 80%; /* Full width links */
-    text-align: center;
-    display: block;
-  }
-  
-  /* Align logo and icon */
-  .navbar-content {
-    padding: 5px 0; /* Tighten up spacing */
+  .bottom-nav-item .icon {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
   }
 
-  /* Hamburger Icon Animation (when open) */
-  .menu-icon .bar:nth-child(2).open {
-    opacity: 0; /* Middle bar disappears */
+  /* একটিভ এবং হোভার স্টেট */
+  .bottom-nav-item.active {
+    color: var(--primary-green);
   }
 
-  .menu-icon .bar:nth-child(1).open {
-    transform: rotate(-45deg) translate(-7px, 6px);
+  .logout-btn-mobile {
+    color: var(--danger-red);
   }
 
-  .menu-icon .bar:nth-child(3).open {
-    transform: rotate(45deg) translate(-7px, -6px);
+  /* মাঝখানের আইটেমকে একটু স্পেশাল করা (ঐচ্ছিক) */
+  .bottom-nav-item:nth-child(2) .icon {
+    font-size: 1.8rem;
+    transition: transform 0.2s;
   }
 }

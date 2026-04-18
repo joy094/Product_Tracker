@@ -1,16 +1,16 @@
-//AdminDashboard.jsx
 import "./AdminDashboard.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// স্টেজগুলোর নাম বাংলায় রূপান্তর করা হয়েছে
 const defaultStages = [
-  { name: "Received at China Warehouse", emoji: "📦", done: false },
-  { name: "On the way to Airport", emoji: "🚚", done: false },
-  { name: "Departed by Air", emoji: "✈️", done: false },
-  { name: "Arrived in BD Airport", emoji: "🛬", done: false },
-  { name: "Customs Clearance", emoji: "🛃", done: false },
-  { name: "In Delivery Process", emoji: "🏍️", done: false },
-  { name: "Delivered", emoji: "🏠", done: false },
+  { name: "চায়না ওয়ারহাউসে গ্রহণ করা হয়েছে", emoji: "📦", done: false },
+  { name: "এয়ারপোর্টের পথে", emoji: "🚚", done: false },
+  { name: "বিমানে রওনা হয়েছে", emoji: "✈️", done: false },
+  { name: "বাংলাদেশ এয়ারপোর্টে পৌঁছেছে", emoji: "🛬", done: false },
+  { name: "কাস্টমস ক্লিয়ারেন্স চলছে", emoji: "🛃", done: false },
+  { name: "ডেলিভারি প্রক্রিয়াধীন", emoji: "🏍️", done: false },
+  { name: "ডেলিভারি সম্পন্ন", emoji: "🏠", done: false },
 ];
 
 const AdminDashboard = () => {
@@ -20,8 +20,12 @@ const AdminDashboard = () => {
   const [newShipment, setNewShipment] = useState({
     trackingNumber: "",
     name: "",
+    totalCartoons: "",
+    weight: "",
+    cbm: "",
+    recivedDate: "",
     transport: "Air",
-    status: "Received at China Warehouse",
+    status: "চায়না ওয়ারহাউসে গ্রহণ করা হয়েছে",
     stages: defaultStages,
   });
   const [statusUpdate, setStatusUpdate] = useState("");
@@ -32,36 +36,43 @@ const AdminDashboard = () => {
 
   const fetchShipments = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracking`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/tracking`,
+      );
       setShipments(res.data);
     } catch (error) {
-      console.error("Error fetching shipments:", error);
+      console.error("শিপমেন্ট লোড করতে সমস্যা হয়েছে:", error);
     }
   };
 
   const handleAddShipment = async (e) => {
     e.preventDefault();
     try {
-      // ensure stages all done=false
       const shipmentToSend = {
         ...newShipment,
         stages: newShipment.stages.map((s) => ({ ...s, done: false })),
       };
 
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/tracking`, shipmentToSend, {
-        headers: { "Content-Type": "application/json" },
-      });
-      alert("Shipment added successfully ✅");
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/tracking`,
+        shipmentToSend,
+        { headers: { "Content-Type": "application/json" } },
+      );
+      alert("শিপমেন্ট সফলভাবে যুক্ত করা হয়েছে ✅");
       setNewShipment({
         trackingNumber: "",
         name: "",
+        totalCartoons: "",
+        weight: "",
+        cbm: "",
+        recivedDate: "",
         transport: "Air",
-        status: "Received at China Warehouse",
+        status: "চায়না ওয়ারহাউসে গ্রহণ করা হয়েছে",
         stages: defaultStages,
       });
       fetchShipments();
     } catch (error) {
-      console.error("Error adding shipment:", error);
+      alert("শিপমেন্ট যোগ করতে সমস্যা হয়েছে ❌");
     }
   };
 
@@ -81,37 +92,41 @@ const AdminDashboard = () => {
     }
     setSelectAll(!selectAll);
   };
+
   const handleBulkUpdate = async () => {
     if (selectedShipments.length === 0 || !statusUpdate) {
-      alert("Please select shipments and a status 🚨");
+      alert("অনুগ্রহ করে শিপমেন্ট এবং স্ট্যাটাস সিলেক্ট করুন 🚨");
       return;
     }
     try {
-      await axios.put(`${import.meta.env.VITE_API_URL}/api/tracking/bulk-update`, {
-        ids: selectedShipments,
-        status: statusUpdate,
-      });
-      alert("Status updated successfully ✅");
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/tracking/bulk-update`,
+        {
+          ids: selectedShipments,
+          status: statusUpdate,
+        },
+      );
+      alert("স্ট্যাটাস সফলভাবে আপডেট করা হয়েছে ✅");
       setSelectedShipments([]);
       setSelectAll(false);
       setStatusUpdate("");
       fetchShipments();
     } catch (error) {
-      console.error("Error updating shipments:", error);
+      alert("আপডেট করতে সমস্যা হয়েছে ❌");
     }
   };
 
   return (
     <div className="admin-dashboard">
-      <h1>👨🏻‍💻 Admin Dashboard</h1>
+      <h1>👨🏻‍💻 অ্যাডমিন ড্যাশবোর্ড</h1>
 
-      {/* Add Shipment */}
+      {/* শিপমেন্ট যোগ করার ফর্ম */}
       <section className="card">
-        <h2>Add New Shipment</h2>
+        <h2>নতুন শিপমেন্ট যুক্ত করুন</h2>
         <form onSubmit={handleAddShipment}>
           <input
             type="text"
-            placeholder="Tracking Number"
+            placeholder="ট্র্যাকিং নম্বর"
             value={newShipment.trackingNumber}
             onChange={(e) =>
               setNewShipment({ ...newShipment, trackingNumber: e.target.value })
@@ -120,22 +135,68 @@ const AdminDashboard = () => {
           />
           <input
             type="text"
-            placeholder="Customer Name"
+            placeholder="কাস্টমারের নাম"
             value={newShipment.name}
             onChange={(e) =>
               setNewShipment({ ...newShipment, name: e.target.value })
             }
             required
           />
+          <input
+            type="number"
+            placeholder="মোট কার্টুন সংখ্যা"
+            value={newShipment.totalCartoons}
+            onChange={(e) =>
+              setNewShipment({
+                ...newShipment,
+                totalCartoons: parseInt(e.target.value),
+              })
+            }
+            required
+          />
+          <input
+            type="number"
+            placeholder="ওজন (কেজি)"
+            value={newShipment.weight}
+            onChange={(e) =>
+              setNewShipment({
+                ...newShipment,
+                weight: parseFloat(e.target.value),
+              })
+            }
+            required
+          />
+          <input
+            type="number"
+            placeholder="CBM"
+            value={newShipment.cbm}
+            onChange={(e) =>
+              setNewShipment({
+                ...newShipment,
+                cbm: parseFloat(e.target.value),
+              })
+            }
+            required
+          />
+          <input
+            type="date"
+            value={newShipment.recivedDate}
+            onChange={(e) =>
+              setNewShipment({ ...newShipment, recivedDate: e.target.value })
+            }
+            required
+          />
+
           <select
             value={newShipment.transport}
             onChange={(e) =>
               setNewShipment({ ...newShipment, transport: e.target.value })
             }
           >
-            <option value="Air">Air</option>
-            <option value="Sea">Sea</option>
+            <option value="Air">এয়ার (Air)</option>
+            <option value="Sea">সী (Sea)</option>
           </select>
+
           <select
             value={newShipment.status}
             onChange={(e) =>
@@ -148,21 +209,22 @@ const AdminDashboard = () => {
               </option>
             ))}
           </select>
-          <button type="submit">Add Shipment</button>
+          <button type="submit">শিপমেন্ট যুক্ত করুন</button>
         </form>
       </section>
 
-      {/* Update Shipments */}
+      {/* শিপমেন্ট আপডেট সেকশন */}
       <section className="card">
-        <h2>Update Shipments</h2>
+        <h2>শিপমেন্ট আপডেট করুন</h2>
 
         <div className="select-all">
           <input
             type="checkbox"
             checked={selectAll}
             onChange={handleSelectAll}
+            id="selectAll"
           />
-          <label>Select All</label>
+          <label htmlFor="selectAll">সবগুলো সিলেক্ট করুন</label>
         </div>
 
         <div className="shipment-cards">
@@ -176,14 +238,17 @@ const AdminDashboard = () => {
               <div className="shipment-info">
                 <h3>{s.trackingNumber}</h3>
                 <p>
-                  <strong>Name:</strong> {s.name}
+                  <strong>নাম:</strong> {s.name}
                 </p>
                 <p>
-                  <strong>Transport:</strong> {s.transport}
+                  <strong>পরিবহন:</strong>{" "}
+                  {s.transport === "Air" ? "এয়ার" : "সী"}
                 </p>
                 <p>
-                  <strong>Status:</strong> {s.status}
+                  <strong>অবস্থা:</strong>{" "}
+                  <span className="status-text">{s.status}</span>
                 </p>
+
                 <div className="stages">
                   {s.stages.map((stage, idx) => (
                     <span
@@ -205,14 +270,16 @@ const AdminDashboard = () => {
             value={statusUpdate}
             onChange={(e) => setStatusUpdate(e.target.value)}
           >
-            <option value="">-- Select Status --</option>
+            <option value="">-- স্ট্যাটাস সিলেক্ট করুন --</option>
             {defaultStages.map((stage, idx) => (
               <option key={idx} value={stage.name}>
                 {stage.name}
               </option>
             ))}
           </select>
-          <button onClick={handleBulkUpdate}>Update Selected</button>
+          <button onClick={handleBulkUpdate}>
+            সিলেক্ট করা শিপমেন্ট আপডেট করুন
+          </button>
         </div>
       </section>
     </div>
